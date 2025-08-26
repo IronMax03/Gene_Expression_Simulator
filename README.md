@@ -1,1 +1,1 @@
-# DNA_Exploration
+# Gene Expression Simulator
