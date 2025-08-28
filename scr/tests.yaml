@@ -1,0 +1,4 @@
+DNA_Subsequence_To_mRNA:
+  - ["TACGAT", "AUGCUA"]
+  - ["AGCY", "-1"]
+  - ["AGCY", "-1"]
