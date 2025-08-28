@@ -4,6 +4,8 @@ import yaml
 with open('scr/tests.yaml', 'r') as file: 
     testsCases = yaml.safe_load(file)
 
+# run tests: pytest --quiet scr/tests.py
+
 @pytest.mark.parametrize("dnaSubsequence, expected", testsCases["DNA_Subsequence_To_mRNA"])
 def test_DNA_Subsequence_To_mRNA(dnaSubsequence: str, expected: str) -> None:
     if expected == "-1":
