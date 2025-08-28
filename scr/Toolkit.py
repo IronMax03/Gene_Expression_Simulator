@@ -1,4 +1,6 @@
-def Find_DNA_Subsequences(templateStrand: str):
+from typing import List
+
+def Find_DNA_Subsequences(templateStrand: str, PromoterLst: List[str] = ["TATAAT", "TTGACA"], Terminator: str = "TTTTT") -> List[List[str]]:
     output  = []
     startIndexs = []
     end = -1
@@ -34,11 +36,13 @@ def DNA_Subsequence_To_mRNA(dnaSubsequence: str) -> str:
     'G' : 'C'
     }
 
+    RNA_Sequence = ""
+
     for b in dnaSubsequence:
         if b not in ['A', 'T', 'C', 'G']:
-            raise Exception("[def DNA_Subsequence_To_mRNA(dnaSubsequence: str):] No terminator found in templateStrand")
+            raise Exception("[def DNA_Subsequence_To_mRNA(dnaSubsequence: str):] Dna strand formating error.")
 
-        RNA_Sequence = RNA_Sequence + dnaSubsequence[b]
+        RNA_Sequence = RNA_Sequence + DNA_RNA_maping[b]
 
 
     return RNA_Sequence
