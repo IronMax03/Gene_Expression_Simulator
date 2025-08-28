@@ -17,3 +17,6 @@ def test_DNA_Subsequence_To_mRNA(dnaSubsequence: str, expected: str) -> None:
     else:
         assert(DNA_Subsequence_To_mRNA(dnaSubsequence) == expected)
 
+@pytest.mark.parametrize("expected, templateStrand", testsCases["Find_DNA_Subsequences"])
+def test_Find_DNA_Subsequences(expected: List[str] , templateStrand: str, PromoterLst: List[str] = ["TATAAT", "TTGACA"], Terminator: str = "TTTTT") -> None:
+    assert(Find_DNA_Subsequences(templateStrand, PromoterLst, Terminator) == expected)
