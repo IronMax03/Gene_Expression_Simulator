@@ -4,6 +4,7 @@ DNA_Subsequence_To_mRNA:
   - ["GGGACCTAGC", "CCCUGGAUCG"]
   - ["ATGCGCGC", "UACGCGCG"]
   - ["GCATAGCTAGCTAGCGA", "CGUAUCGAUCGAUCGCU"]
+  - ["gcATAGCtAGCTAGcGa", "CGUAUCGAUCGAUCGCU"]
   - ["AGCY", "-1"]
   - ["TAC GAT", "-1"]
 
@@ -17,5 +18,6 @@ Find_DNA_Subsequences:
 - [[['CGCGCGCTATATTGACAGGCCG', 'GGCCG'], ['TATAAT', 'TTGACA']], 'TATAATCGCGCGCTATATTGACAGGCCGTTTTT']
 - [[[], []], '']
 - [[[], []], 'GGCCGTTTTT']
+- [[[], []], 'GGCCGTTTTTATATAAT']
 - [[[], []], 'AAATTGACAGCTATAATGGGACCTA']
 - [[[], []], 'GACAGCGGGACCTA']
