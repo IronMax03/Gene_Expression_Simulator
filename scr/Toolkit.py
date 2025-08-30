@@ -1,5 +1,7 @@
 from typing import List
-
+import yaml
+with open('scr/config.yaml', 'r') as file: 
+    config = yaml.safe_load(file)
 
 def DNA_Subsequence_To_mRNA(dnaSubsequence: str) -> str:
 
@@ -48,3 +50,24 @@ def Find_DNA_Subsequences(templateStrand: str, PromoterLst: List[str] = ["TATAAT
         i = i + 1
     
     return [dnaOutput, promoterOutput]
+
+# Eukaryotes
+def add_cap_and_tail(rna_seq:str, cap_type:int, tail_length:int) -> (str, str, str):
+    if cap_type not in config["cap_type_to_biochemical_map"]:
+        raise Exception("Unknown cap type")
+    return (f"5\'cap{cap_type} ", rna_seq, "A"+ str(tail_length))
+
+# Eukaryotes
+def convert_to_single_string(mature_mRNA:(str, str, str)) -> str:
+    tail = ""
+    for i in range(int(mature_mRNA[2][1:])):
+        tail = tail + mature_mRNA[2][0]
+    return f"{mature_mRNA[0]}{mature_mRNA[1]}{tail} 3\'"
+
+# Eukaryotes
+def cap_type_to_biochemical(cap_type:str) -> str:
+    biochemicalMap = config["cap_type_to_biochemical_map"]
+
+    if cap_type not in biochemicalMap:
+        raise Exception("Unknown cap type")
+    return biochemicalMap[cap_type]

@@ -9,7 +9,7 @@ DNA_Subsequence_To_mRNA:
   - ["TAC GAT", "-1"]
 
 Find_DNA_Subsequences:
-# [expected, templateStrand]
+# [expected:str, templateStrand:str]
 - [[['GGGACCTAGC'], ['TATAAT']], 'GCTATAATGGGACCTAGCTTTTTATGC']
 - [[['GGCCG'], ['TATAAT']], 'AAATATAATGGCCGTTTTTCC'] # AI generated
 - [[['GGCCG'], ['TATAAT']], 'TATAATGGCCGTTTTT']
@@ -21,3 +21,11 @@ Find_DNA_Subsequences:
 - [[[], []], 'GGCCGTTTTTATATAAT']
 - [[[], []], 'AAATTGACAGCTATAATGGGACCTA']
 - [[[], []], 'GACAGCGGGACCTA']
+
+add_cap_and_tail:
+# [expected:str, rna_seq:str, cap_type:int, tail_length:int]
+- ["5''cap0 CGCAUAGCAAAAAAAAAA 3''", "CGCAUAGC", 0, 10]
+
+convert_to_single_string:
+# [expected:str,  mature_mRNA:(str, str, str)]
+- ["5''cap0 CGCAUAGCAAAAAAAAAA 3''", ("5''cap0 ", "CGCAUAGC", "A10")]
