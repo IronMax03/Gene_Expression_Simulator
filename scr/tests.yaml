@@ -24,8 +24,7 @@ Find_DNA_Subsequences:
 
 add_cap_and_tail:
 # [expected:str, rna_seq:str, cap_type:int, tail_length:int]
-- ["5''cap0 CGCAUAGCAAAAAAAAAA 3''", "CGCAUAGC", 0, 10]
-
+- ["5'cap0 CGCAUAGCAAAAAAAAAA 3'", "CGCAUAGC", 0, 10]
 convert_to_single_string:
-# [expected:str,  mature_mRNA:(str, str, str)]
-- ["5''cap0 CGCAUAGCAAAAAAAAAA 3''", ("5''cap0 ", "CGCAUAGC", "A10")]
+# [expected:str,  mature_mRNA:[str, str, str]]
+- ["5'cap0 CGCAUAGCAAAAAAAAAA 3'", ["5'cap0 ", "CGCAUAGC", "A10"]]
