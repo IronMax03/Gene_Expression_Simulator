@@ -27,7 +27,7 @@ AminoAcids:
   "V": "Valine"
 
 # converting codons into amino acid one-letter abbreviation
-# Start Codon: +
+# Start Codon: M
 # Stop Codon: -
 AminoAcidTocodonMap:
   "UUU": "F"
@@ -38,8 +38,8 @@ AminoAcidTocodonMap:
   "UCC": "S"
   "UCA": "S"
   "UCG": "S"
-  "UAU": "T"
-  "UAC": "T"
+  "UAU": "Y"
+  "UAC": "Y"
   "UAA": "-"
   "UAG": "-"
   "UGU": "C"
@@ -67,7 +67,7 @@ AminoAcidTocodonMap:
   "AUU": "I"
   "AUC": "I"
   "AUA": "I"
-  "AUG": "+"
+  "AUG": "M"
   "ACU": "T"
   "ACC": "T"
   "ACA": "T"
