@@ -3,7 +3,7 @@ cap_type_to_biochemical_map:
   "cap1": "m7GpppNm"
   "cap2": "m7GpppNmNm"
 
-#one letter abreviation
+# one-letter abbreviation conversion
 AminoAcids:
   "A": "Alanine"
   "R": "Arginine"
@@ -26,9 +26,10 @@ AminoAcids:
   "Y": "Tyrosine"
   "V": "Valine"
 
-# converting condos into amino acid one letter abreviation
-# Start: +, Stop: -
-AminoAcidTocondoMap:
+# converting codons into amino acid one-letter abbreviation
+# Start Codon: +
+# Stop Codon: -
+AminoAcidTocodonMap:
   "UUU": "F"
   "UUC": "F"
   "UUA": "L"
