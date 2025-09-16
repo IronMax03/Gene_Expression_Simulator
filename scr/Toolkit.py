@@ -1,7 +1,7 @@
 from typing import List, Tuple
 import yaml
-with open('scr/config.yaml', 'r') as file: 
-    config = yaml.safe_load(file)
+with open('scr/bio_mapping.yaml', 'r') as file: 
+    bio_map = yaml.safe_load(file)
 
 
 class GeneExpressionError(Exception):
@@ -22,6 +22,11 @@ class CapTypeError(GeneExpressionError):
 
 class TailError(GeneExpressionError):
     """Errors related to poly(A) tail tokens or lengths."""
+
+def checkRnaSymbol(RNA:str) -> None:
+    for n in RNA:
+        if n.upper() not in ["A", "U", "G", "C"]:
+            raise RNAError("[" + n + "] RNA sequence must contain only A/C/G/U.")
 
 def DNA_Subsequence_To_mRNA(dnaSubsequence: str) -> str:
 
@@ -73,20 +78,18 @@ def Find_DNA_Subsequences(templateStrand: str, PromoterLst: List[str] = ["TATAAT
 
 # Eukaryotes
 def add_cap_and_tail(rna_seq:str, cap_type:int, tail_length:int) -> Tuple[str, str, str]:
-
-    for b in rna_seq:
-        if b.upper() not in ["A", "U", "G", "C"]:
-            raise RNAError("RNA sequence must contain only A/C/G/U.")
+    checkRnaSymbol(rna_seq)
 
     cap_key = f"cap{cap_type}" if isinstance(cap_type, int) else str(cap_type).strip().lower()
-    if cap_key not in config["cap_type_to_biochemical_map"]:
+    if cap_key not in bio_map["cap_type_to_biochemical_map"]:
         raise CapTypeError("Unknown cap type")
     return (f"5\'cap{cap_type} ", rna_seq, "A"+ str(tail_length))
 
 # Eukaryotes
 def convert_to_single_string(mature_mRNA:Tuple[str, str, str]) -> str:
+    checkRnaSymbol(mature_mRNA[1])
     tail = ""
-    if mature_mRNA[0] not in ["A", "U", "G", "C"] or isinstance(mature_mRNA[0:],int):
+    if isinstance(mature_mRNA[0:],int):
         raise TailError("The tail is not formated correctly")
     elif int(mature_mRNA[0:]) < 0:
         raise TailError("Tail size must be positive")
@@ -97,8 +100,25 @@ def convert_to_single_string(mature_mRNA:Tuple[str, str, str]) -> str:
 
 # Eukaryotes
 def cap_type_to_biochemical(cap_type:str) -> str:
-    biochemicalMap = config["cap_type_to_biochemical_map"]
+    biochemicalMap = bio_map["cap_type_to_biochemical_map"]
 
     if cap_type not in biochemicalMap:
         raise CapTypeError("Unknown cap type")
     return biochemicalMap[cap_type]
+
+
+
+def mRnaTranslation(mRNA:str) -> str:
+    protein = ""
+
+    for i in range(len(mRNA)):
+        if bio_map["AminoAcidTocodonMap"][mRNA[i:i + 3]] == "M":
+            mRNA = mRNA[i:]
+            break
+
+    for i in range(0, len(mRNA), 3):
+        if bio_map["AminoAcidTocodonMap"][mRNA[i:i + 3]] == "-":
+            break
+        protein +=  bio_map["AminoAcidTocodonMap"][mRNA[i:i + 3]]
+
+    return protein
