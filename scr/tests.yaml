@@ -28,3 +28,7 @@ add_cap_and_tail:
 convert_to_single_string:
 # [expected:str,  mature_mRNA:[str, str, str]]
 - ["5'cap0 CGCAUAGCAAAAAAAAAA 3'", ["5'cap0 ", "CGCAUAGC", "A10"]]
+
+mRNA_translation:
+# [expected:str, mRNA:str]
+- ["MQLAE", "CAACAGCAACAA AUG CAA CUA GCU GAA UAA CAACAAGCGCAACAA"]

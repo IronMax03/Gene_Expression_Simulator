@@ -7,6 +7,16 @@ import yaml
 with open('scr/tests.yaml', 'r') as file: 
     testsCases = yaml.safe_load(file)
 
+class ExceptionHandlingError(Exception):
+    """An Exception was not Handled correctly."""
+
+def removeSpaces(sequence:str) -> str:
+    out = ""
+    for c in sequence:
+        if c != " ":
+            out += c
+    return out
+
 # run tests: pytest --quiet scr/tests.py
 
 @pytest.mark.parametrize("dnaSubsequence, expected", testsCases["DNA_Subsequence_To_mRNA"])
@@ -34,3 +44,15 @@ def test_add_cap_and_tail(expected:str, rna_seq:str, cap_type:int, tail_length:i
 def test_convert_to_single_string(expected:str, mature_mRNA:Tuple[str, str, str]) -> None:
     assert convert_to_single_string(mature_mRNA) == expected
 
+@pytest.mark.parametrize("expected, mRNA", testsCases["mRNA_translation"])
+def test_mRnaTranslation(expected:str, mRNA:str) -> None:
+    if expected != "-1":
+        mRNA = removeSpaces(mRNA)
+        assert  mRnaTranslation(mRNA) == expected
+    else:
+        try:
+            mRnaTranslation(mRNA)
+        except RNAError:
+            return
+        except:
+            raise ExceptionHandlingError
