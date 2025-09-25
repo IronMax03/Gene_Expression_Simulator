@@ -26,9 +26,9 @@ AminoAcids:
   "Y": "Tyrosine"
   "V": "Valine"
 
-# converting codons into amino acid one-letter abbreviation
+# converting codons into amino acid one-letter abbreviation (fasta)
 # Start Codon: M
-# Stop Codon: -
+# Stop Codon: *
 AminoAcidTocodonMap:
   "UUU": "F"
   "UUC": "F"
@@ -40,11 +40,11 @@ AminoAcidTocodonMap:
   "UCG": "S"
   "UAU": "Y"
   "UAC": "Y"
-  "UAA": "-"
-  "UAG": "-"
+  "UAA": "*"
+  "UAG": "*"
   "UGU": "C"
   "UGC": "C"
-  "UGA": "-"
+  "UGA": "*"
   "UGG": "W"
   ########################
   "CUU": "L"
